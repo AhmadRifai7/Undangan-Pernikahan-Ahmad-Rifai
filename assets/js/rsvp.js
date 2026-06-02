@@ -8,7 +8,7 @@
  * Format URL: https://script.google.com/macros/s/XXXX/exec
  */
 
-const SPREADSHEET_ID = '1-21YmYpj9WUkY9kRUBdt9TlfKMO3h_r-MJ6ewY_8Z80';
+const SPREADSHEET_ID = 'https://docs.google.com/spreadsheets/d/1-21YmYpj9WUkY9kRUBdt9TlfKMO3h_r-MJ6ewY_8Z80/edit?gid=451570177#gid=451570177';
 
 // Web App URL — Google Apps Script deploy
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyPEBfWqRww1vyExG426-nc7tgyRBswYxU-hYD-7DyNF-IpwWBjfPFUtLBCILkQTS8x/exec';
