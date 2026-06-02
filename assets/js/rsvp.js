@@ -135,7 +135,7 @@ function addWishToList(name, attend, wish) {
   const empty = list.querySelector('.wish-empty');
   if (empty) empty.remove();
 
-  const icons = { 'Hadir': , 'Tidak Hadir': , 'Mungkin': };
+  const icons = { 'Hadir': '✓ ', 'Tidak Hadir': '✗ ', 'Mungkin': '? ' };
   const icon = icons[attend] || '💌';
 
   const item = document.createElement('div');
