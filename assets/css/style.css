@@ -946,6 +946,9 @@ main.visible { opacity: 1; pointer-events: all; }
   body { cursor: auto; }
   .cursor, .cursor-follower { display: none; }
   button, a, .gallery-item, .open-btn, .music-player { cursor: pointer; }
+  .music-player { bottom: 16px; right: 16px; width: 44px; height: 44px; }
+  .music-icon { font-size: 16px; }
+  #toast { bottom: 72px; right: 16px; }
   .couple-inner { grid-template-columns: 1fr; }
   .couple-sep { display: none; }
   .event-cards, .gift-cards { grid-template-columns: 1fr; }
