@@ -252,17 +252,7 @@ audio.play()
     musicStarted = false;
     document.getElementById('musicIcon')?.classList.add('paused');
   });
-  
-  // Fade in effect selama 1.5 detik
-  const fadeInDuration = 1500;
-  const startTime = Date.now();
-
-  const fadeIn = () => {
-    const elapsed = Date.now() - startTime;
-    const progress = Math.min(elapsed / fadeInDuration, 1);
-    audio.volume = progress * 0.5;
-    if (progress < 1) requestAnimationFrame(fadeIn);
-  };
+}
 
 
 function toggleMusic() {
