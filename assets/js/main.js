@@ -215,12 +215,13 @@ async function openInvitation() {
 
 /* ── Music ── */
 let musicPlaying = false;
+let musicStarted = false;
 
 function tryPlayMusic() {
   const audio = document.getElementById('bgMusic');
-  if (!audio) return;
+  if (!audio || musicStarted) return;
   
-  // Reset dan setup
+  musicStarted = true;
   audio.volume = 0;
   audio.currentTime = 0;
   
@@ -238,36 +239,70 @@ function tryPlayMusic() {
     }
   };
   
-  audio.play()
-    .then(() => {
-      musicPlaying = true;
-      document.getElementById('musicIcon')?.classList.remove('paused');
-      fadeIn();
-      
-      // Stop musik setelah 16 detik
-      setTimeout(() => {
-        if (musicPlaying && audio) {
-          audio.pause();
-          musicPlaying = false;
-          document.getElementById('musicIcon')?.classList.add('paused');
+  const playPromise = audio.play();
+  
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        console.log('Music playing');
+        musicPlaying = true;
+        document.getElementById('musicIcon')?.classList.remove('paused');
+        fadeIn();
+        
+        // Stop musik setelah 16 detik
+        setTimeout(() => {
+          if (audio && !audio.paused) {
+            audio.pause();
+            musicPlaying = false;
+            document.getElementById('musicIcon')?.classList.add('paused');
+          }
+        }, 16000);
+      })
+      .catch(error => {
+        console.log('Autoplay failed:', error);
+        musicStarted = false;
+        // Tampilkan button untuk manual play
+        const musicPlayer = document.getElementById('musicPlayer');
+        if (musicPlayer) {
+          musicPlayer.style.display = 'flex';
+          musicPlayer.classList.add('active');
         }
-      }, 16000);
-    })
-    .catch(() => {});
+      });
+  }
 }
 
 function toggleMusic() {
   const audio = document.getElementById('bgMusic');
   const icon = document.getElementById('musicIcon');
   if (!audio) return;
+  
   if (musicPlaying) {
     audio.pause();
     icon?.classList.add('paused');
     musicPlaying = false;
   } else {
-    audio.play();
-    icon?.classList.remove('paused');
-    musicPlaying = true;
+    // Fade in effect untuk manual play juga
+    audio.volume = 0;
+    const fadeInDuration = 1500;
+    const startTime = Date.now();
+    
+    const fadeIn = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / fadeInDuration, 1);
+      audio.volume = progress * 0.5;
+      
+      if (progress < 1) {
+        requestAnimationFrame(fadeIn);
+      }
+    };
+    
+    audio.play()
+      .then(() => {
+        icon?.classList.remove('paused');
+        musicPlaying = true;
+        fadeIn();
+      })
+      .catch(error => console.log('Manual play failed:', error));
   }
 }
 

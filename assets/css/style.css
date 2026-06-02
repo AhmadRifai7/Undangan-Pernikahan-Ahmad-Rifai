@@ -883,8 +883,14 @@ main.visible { opacity: 1; pointer-events: all; }
   transition: transform 0.4s var(--ease);
 }
 .music-player:hover { transform: scale(1.08); }
+.music-player.active { animation: pulse 1.5s ease-in-out infinite; }
 .music-icon { font-size: 18px; color: var(--ink); animation: spin 5s linear infinite; }
 .music-icon.paused { animation-play-state: paused; }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 8px 28px rgba(201, 162, 39, 0.35); }
+  50% { box-shadow: 0 8px 28px rgba(201, 162, 39, 0.6); }
+}
 
 /* Audio fade in animation */
 #bgMusic { opacity: 0; animation: audioFadeIn 1.5s ease-out forwards; }
