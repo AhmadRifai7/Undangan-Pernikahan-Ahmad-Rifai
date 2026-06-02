@@ -11,9 +11,16 @@
 const SPREADSHEET_ID = '1-21YmYpj9WUkY9kRUBdt9TlfKMO3h_r-MJ6ewY_8Z80';
 
 // Web App URL — Google Apps Script deploy
+// PENTING: Ganti URL ini dengan Web App URL dari Google Apps Script deployment
+// Lihat SETUP_GOOGLE_SHEETS.md untuk panduan lengkap
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbybO7L3dSv-w8SlBLF78BmRfNEHtmUwjjjR8KSdNg0luflNoDckaBdtqxHlz76GViHG/exec';
 
 const DEMO_MODE = SHEET_URL === 'GANTI_DENGAN_GOOGLE_APPS_SCRIPT_URL';
+
+// Debug logging
+if (typeof console !== 'undefined') {
+  console.log('[RSVP Init]', { DEMO_MODE, SHEET_URL: SHEET_URL ? 'configured' : 'missing' });
+}
 
 /* ================================================
    SUBMIT RSVP
@@ -46,15 +53,18 @@ async function submitRSVP() {
 
   try {
     if (DEMO_MODE) {
+      console.log('[RSVP Demo Mode] Submission simulated');
       await fakeSendDelay();
     } else {
+      console.log('[RSVP Submit] Sending to:', SHEET_URL);
       // text/plain = simple request, hindari masalah CORS preflight
-      await fetch(SHEET_URL, {
+      const response = await fetch(SHEET_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
       });
+      console.log('[RSVP Submit] Request sent (no-cors mode - response not readable)');
     }
 
     document.getElementById('rsvp-name').value = '';
@@ -71,7 +81,9 @@ async function submitRSVP() {
       const sent = JSON.parse(localStorage.getItem('rsvp_sent') || '[]');
       sent.push({ name, time: Date.now() });
       localStorage.setItem('rsvp_sent', JSON.stringify(sent.slice(-20)));
-    } catch (_) {}
+    } catch (storageErr) {
+      console.warn('localStorage tidak tersedia (normal di file:// protocol):', storageErr.message);
+    }
 
   } catch (e) {
     showToast('Gagal mengirim. Coba lagi ya!');
@@ -94,6 +106,7 @@ async function loadWishes() {
   if (!list) return;
 
   if (DEMO_MODE) {
+    console.log('[Wishes] Demo mode - loading sample data');
     const demos = [
       { name: 'Budi Santoso',  attend: 'Hadir',       wish: 'Selamat ya! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah 🎉' },
       { name: 'Siti Rahayu',   attend: 'Hadir',       wish: 'Barakallahu lakuma wa baraka alaikuma, wa jama\'a bainakuma fii khair 💕' },
@@ -105,8 +118,11 @@ async function loadWishes() {
   }
 
   try {
+    console.log('[Wishes] Fetching from:', SHEET_URL + '?action=get');
     const res = await fetch(`${SHEET_URL}?action=get`);
     const data = await res.json();
+
+    console.log('[Wishes] Received:', Array.isArray(data) ? data.length + ' items' : 'invalid response');
 
     if (!Array.isArray(data)) {
       console.warn('RSVP API error:', data);
