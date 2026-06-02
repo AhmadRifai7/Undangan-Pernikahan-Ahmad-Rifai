@@ -219,11 +219,39 @@ let musicPlaying = false;
 function tryPlayMusic() {
   const audio = document.getElementById('bgMusic');
   if (!audio) return;
-  audio.volume = 0.5;
+  
+  // Reset dan setup
+  audio.volume = 0;
+  audio.currentTime = 0;
+  
+  // Fade in effect selama 1.5 detik
+  const fadeInDuration = 1500;
+  const startTime = Date.now();
+  
+  const fadeIn = () => {
+    const elapsed = Date.now() - startTime;
+    const progress = Math.min(elapsed / fadeInDuration, 1);
+    audio.volume = progress * 0.5;
+    
+    if (progress < 1) {
+      requestAnimationFrame(fadeIn);
+    }
+  };
+  
   audio.play()
     .then(() => {
       musicPlaying = true;
       document.getElementById('musicIcon')?.classList.remove('paused');
+      fadeIn();
+      
+      // Stop musik setelah 16 detik
+      setTimeout(() => {
+        if (musicPlaying && audio) {
+          audio.pause();
+          musicPlaying = false;
+          document.getElementById('musicIcon')?.classList.add('paused');
+        }
+      }, 16000);
     })
     .catch(() => {});
 }
