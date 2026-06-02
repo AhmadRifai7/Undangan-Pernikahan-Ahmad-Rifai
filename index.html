@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Undangan Pernikahan — Ahmad Rifai & Vany Anggraeni</title>
+<meta name="description" content="Undangan pernikahan Ahmad Rifai & Vany Anggraeni — Selasa, 9 Juni 2026, Bogor">
+<meta property="og:title" content="Undangan Pernikahan Ahmad Rifai & Vany Anggraeni">
+<meta property="og:description" content="Wilujeng sumping — kami mengundang kehadiran Anda.">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta property="og:url" content="https://YOUR_NETLIFY_URL.netlify.app">
+<meta name="theme-color" content="#0a0705">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Outfit:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+  }
+}
+</script>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<div class="ambient" aria-hidden="true">
+  <div class="ambient__orb ambient__orb--1" data-float></div>
+  <div class="ambient__orb ambient__orb--2" data-float></div>
+  <div class="ambient__orb ambient__orb--3" data-float></div>
+</div>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+<div id="progress-bar"></div>
+
+<!-- Loading -->
+<div id="loading-screen">
+  <div class="loading-ring"></div>
+  <div class="loading-logo">Ahmad & Vany</div>
+  <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+  <div class="loading-text">Memuat undangan</div>
+</div>
+
+<!-- Link Generator -->
+<div class="link-gen hidden" id="linkGen">
+  <div class="link-gen-backdrop"></div>
+  <div class="link-gen-box">
+    <p class="link-gen-eyebrow">Admin</p>
+    <h2 class="link-gen-title">Generator Link Tamu</h2>
+    <p class="link-gen-sub">Buat URL personal — nama tamu otomatis tampil di cover.</p>
+    <div id="gen-single">
+      <label class="link-gen-label" for="gen-nama">Nama Tamu</label>
+      <input type="text" class="link-gen-input" id="gen-nama" placeholder="Budi Santoso" oninput="generateLink()">
+      <div class="link-gen-result" id="gen-result" onclick="copyGenLink()"></div>
+      <p class="link-gen-hint" id="gen-hint">Klik link untuk menyalin</p>
+      <div class="link-gen-btns">
+        <button type="button" class="btn btn--gold" data-magnetic onclick="copyGenLink()">Salin</button>
+        <button type="button" class="btn btn--outline" data-magnetic onclick="shareWA()">WhatsApp</button>
+        <button type="button" class="btn btn--outline" data-magnetic onclick="showBatch()">Batch</button>
+      </div>
+    </div>
+    <div id="gen-batch" hidden>
+      <label class="link-gen-label" for="batch-names">Satu nama per baris</label>
+      <textarea class="link-gen-input" id="batch-names" rows="6" placeholder="Budi Santoso&#10;Siti Rahayu"></textarea>
+      <button type="button" class="btn btn--gold" data-magnetic onclick="generateBatch()">Generate</button>
+      <div class="batch-list" id="batch-list"></div>
+      <div class="link-gen-btns">
+        <button type="button" class="btn btn--outline" data-magnetic onclick="copyAllLinks()">Salin Semua</button>
+        <button type="button" class="btn btn--outline" data-magnetic onclick="showSingle()">Kembali</button>
+      </div>
+    </div>
+    <button type="button" class="link-gen-skip" onclick="skipToInvitation()">Lewati ke undangan →</button>
+  </div>
+</div>
+
+<!-- Cover -->
+<div class="cover" id="cover">
+  <div id="three-cover" class="three-wrap" aria-hidden="true"></div>
+  <div class="cover-vignette"></div>
+  <div class="pattern-bg pattern-bg--dark"></div>
+  <div class="cover__frame"></div>
+  <img src="assets/svg/garland-wave.svg" alt="" class="cover__garland" width="720" height="120">
+  <img src="assets/svg/kembang-sunda.svg" alt="" class="cover__kembang cover__kembang--tl">
+  <img src="assets/svg/kembang-sunda.svg" alt="" class="cover__kembang cover__kembang--br">
+
+  <div class="cover-content">
+    <p class="cover-sunda">Wilujeng Sumping</p>
+    <p class="cover-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+    <p class="cover-label">Undangan Pernikahan</p>
+    <img src="assets/svg/divider-sunda.svg" alt="" class="divider">
+    <div class="couple-signature-block">
+      <h1 class="couple-signature" aria-label="Rifai dan Vany">
+        <span class="sig-name">Rifai</span>
+        <span class="sig-amp">&amp;</span>
+        <span class="sig-name">Vany</span>
+      </h1>
+      <p class="save-the-date">
+        <span class="save-the-date__line" aria-hidden="true"></span>
+        save the date
+        <span class="save-the-date__line" aria-hidden="true"></span>
+      </p>
+    </div>
+    <p class="cover-date">Selasa · 9 Juni 2026 · Bogor</p>
+    <p class="cover-kepada">Kepada Yth.</p>
+    <p class="cover-tamu" id="nama-tamu">Tamu Undangan</p>
+    <button type="button" class="btn btn--gold btn--lg open-btn" data-magnetic onclick="openInvitation()">
+      <span>Buka Undangan</span>
+    </button>
+  </div>
+</div>
+
+<main id="main">
+
+  <section class="hero section--dark">
+    <div id="three-hero" class="three-wrap" aria-hidden="true"></div>
+    <div class="hero-vignette"></div>
+    <div class="pattern-bg pattern-bg--dark"></div>
+    <img src="assets/svg/garland-wave.svg" alt="" class="hero__garland" id="heroGarland">
+    <img src="assets/svg/kembang-sunda.svg" alt="" class="hero__float hero__float--kembang left" id="heroKembangL">
+    <img src="assets/svg/kembang-sunda.svg" alt="" class="hero__float hero__float--kembang right" id="heroKembangR">
+
+    <div class="hero-content">
+          <p class="hero-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+          <p class="hero-label">Dengan penuh rasa syukur, kami mengundang</p>
+          <p class="hero-label">THE WEDDING OF</p>
+      <img src="assets/svg/divider-sunda.svg" alt="" class="divider">
+      <div class="couple-signature-block couple-signature-block--hero">
+        <h1 class="couple-signature" aria-label="Rifai dan Vany">
+          <span class="sig-name">Rifai</span>
+          <br><span class="sig-amp">&</span>
+          <br>
+          <span class="sig-name">Vany</span>
+        </h1>
+        <p class="save-the-date">
+          <span class="save-the-date__line" aria-hidden="true"></span>
+        </p>
+      </div>
+      <img src="assets/svg/divider-sunda.svg" alt="" class="divider">
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <blockquote class="quote-sunda reveal">
+    <p class="quote-sunda__text">"Hirup teh sakedik, rasa teh sakedap — cinta teh salawasna."</p>
+    <cite class="quote-sunda__attr">V & R</cite>
+  </blockquote>
+
+  <div class="section-separator"><img src="assets/svg/divider-sunda.svg" alt="" class="divider"></div>
+
+  <section class="section section--light" id="couple">
+    <div class="pattern-bg"></div>
+    <div class="section__inner">
+      <span class="section-tag reveal">Mempelai</span>
+      <h2 class="section-title reveal">Yang <em>Berbahagia</em></h2>
+      <div class="couple-inner">
+        <article class="couple-card reveal-left">
+          <img src="assets/img/mempelai pria.jpg" alt="Ahmad Rifai" class="couple-img" data-tilt>
+          <div class="couple-img" data-tilt>
+            <div class="couple-img__ph"><span>Foto Pria</span></div>
+          </div>
+          <h3 class="couple-name">Ahmad Rifai, S.E</h3>
+          <p class="couple-parent">Putra dari<br><strong>Alm KH. Eman Sulaiman</strong><br>&amp; <strong>Alm Ibu Hj. Siti Solihat</strong></p>
+        </article>
+        <div class="couple-sep reveal" aria-hidden="true">
+          <img src="assets/svg/kembang-sunda.svg" alt="" width="80" height="80">
+        </div>
+        <article class="couple-card reveal-right">
+          <img src="assets/img/mempelai wanita.jpg" alt="Vany Anggraeni" class="couple-img" data-tilt>
+          <div class="couple-img" data-tilt>
+            <div class="couple-img__ph"><span>Foto Wanita</span></div>
+          </div>
+          <h3 class="couple-name">Vany Anggraeni, S.E</h3>
+          <p class="couple-parent">Putri dari<br><strong>Bapak Yeyep Hidayat (Dayat)</strong><br>&amp; <strong>Ibu Mulyani (Yani)</strong></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark section--glow">
+    <div class="section__inner">
+      <span class="section-tag reveal">Menghitung Hari</span>
+      <h2 class="section-title reveal">Menuju <em>Hari Bahagia</em></h2>
+      <div class="countdown-grid">
+        <div class="countdown-item reveal"><span class="countdown-num" id="cd-days">00</span><span class="countdown-label">Hari</span></div>
+        <div class="countdown-item reveal"><span class="countdown-num" id="cd-hours">00</span><span class="countdown-label">Jam</span></div>
+        <div class="countdown-item reveal"><span class="countdown-num" id="cd-mins">00</span><span class="countdown-label">Menit</span></div>
+        <div class="countdown-item reveal"><span class="countdown-num" id="cd-secs">00</span><span class="countdown-label">Detik</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--warm">
+    <div class="section__inner">
+      <span class="section-tag reveal">Rangkaian Acara</span>
+      <h2 class="section-title reveal">Akad &amp; <em>Resepsi</em></h2>
+      <div class="event-cards">
+        <article class="event-card reveal-left glass-card">
+          <span class="event-badge">Akad</span>
+          <h3 class="event-name">Ijab Qabul</h3>
+          <p class="event-time">08<sup>00</sup></p>
+          <p class="event-date">Selasa, 9 Juni 2026</p>
+          <p class="event-place">Meeting Room</p>
+          <p class="event-address">Villa AJ by Arkadia Leuwimalang</p>
+          <a href="https://www.google.com/maps/place/Villa+AJ+by+Arkadia/@-6.6550042,106.9049607,1550m/data=!3m2!1e3!4b1!4m9!3m8!1s0x2e69c826194b1c35:0x3b65684f26bbb546!5m2!4m1!1i2!8m2!3d-6.6550042!4d106.9075356!16s%2Fg%2F1pzsgqvb3?entry=ttu&g_ep=EgoyMDI2MDUyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn btn--outline btn--sm" data-magnetic>Maps</a>
+        </article>
+        <article class="event-card reveal-right glass-card">
+          <span class="event-badge">Resepsi</span>
+          <h3 class="event-name">Walimatul 'Ursy</h3>
+          <p class="event-time">10<sup>00</sup></p>
+          <p class="event-date">Selasa, 9 Juni 2026</p>
+          <p class="event-place">Meeting Room</p>
+          <p class="event-address">Villa AJ by Arkadia Leuwimalang</p>
+          <a href="https://www.google.com/maps/place/Villa+AJ+by+Arkadia/@-6.6550042,106.9049607,1550m/data=!3m2!1e3!4b1!4m9!3m8!1s0x2e69c826194b1c35:0x3b65684f26bbb546!5m2!4m1!1i2!8m2!3d-6.6550042!4d106.9075356!16s%2Fg%2F1pzsgqvb3?entry=ttu&g_ep=EgoyMDI2MDUyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn btn--outline btn--sm" data-magnetic>Maps</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="section__inner section__inner--narrow">
+      <span class="section-tag reveal">Jadwal</span>
+      <h2 class="section-title reveal">Rundown <em>Acara</em></h2>
+      <div class="rundown-list">
+        <div class="rundown-item reveal"><time class="rundown-time">07.30</time><div class="rundown-body"><p class="rundown-event">Registrasi Tamu</p><p class="rundown-desc">Penyambutan tamu undangan</p></div></div>
+        <div class="rundown-item reveal"><time class="rundown-time">08.00</time><div class="rundown-body"><p class="rundown-event">Akad Nikah</p><p class="rundown-desc">Ijab qabul &amp; doa</p></div></div>
+        <div class="rundown-item reveal"><time class="rundown-time">09.30</time><div class="rundown-body"><p class="rundown-event">Sungkeman</p><p class="rundown-desc">Adat Sunda — hormat ke orang tua</p></div></div>
+        <div class="rundown-item reveal"><time class="rundown-time">11.00</time><div class="rundown-body"><p class="rundown-event">Resepsi</p><p class="rundown-desc">Ramah tamah</p></div></div>
+        <div class="rundown-item reveal"><time class="rundown-time">12.00</time><div class="rundown-body"><p class="rundown-event">Makan &amp; Hiburan</p><p class="rundown-desc">Bersama keluarga</p></div></div>
+        <div class="rundown-item reveal"><time class="rundown-time">14.00</time><div class="rundown-body"><p class="rundown-event">Penutupan</p><p class="rundown-desc">Doa &amp; foto bersama</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="section__inner section__inner--wide">
+      <span class="section-tag reveal">Galeri</span>
+      <h2 class="section-title reveal">Momen <em>Kami</em></h2>
+      <p class="section-desc reveal">Ganti placeholder dengan foto Anda di folder <code>assets/img/</code></p>
+      <div class="gallery-grid">
+        <figure class="gallery-item reveal-scale" data-caption="Momen Bersama" onclick="openLightbox('')"><div class="gallery-ph">01</div><figcaption>Momen Bersama</figcaption></figure>
+        <figure class="gallery-item reveal-scale" data-caption="Pre-Wedding" onclick="openLightbox('')"><div class="gallery-ph">02</div><figcaption>Pre-Wedding</figcaption></figure>
+        <figure class="gallery-item reveal-scale" data-caption="Lamaran" onclick="openLightbox('')"><div class="gallery-ph">03</div><figcaption>Lamaran</figcaption></figure>
+        <figure class="gallery-item reveal-scale" data-caption="Berdua" onclick="openLightbox('')"><div class="gallery-ph">04</div><figcaption>Berdua</figcaption></figure>
+        <figure class="gallery-item reveal-scale" data-caption="Kenangan" onclick="openLightbox('')"><div class="gallery-ph">05</div><figcaption>Kenangan</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--warm">
+    <div class="section__inner" style="text-align:center">
+      <span class="section-tag reveal">Lokasi</span>
+      <h2 class="section-title reveal">Temukan <em>Kami</em></h2>
+      <iframe class="maps-embed reveal" title="Lokasi"
+        src="https://www.google.com/maps/place/Villa+AJ+by+Arkadia/@-6.6550042,106.9049607,1550m/data=!3m2!1e3!4b1!4m9!3m8!1s0x2e69c826194b1c35:0x3b65684f26bbb546!5m2!4m1!1i2!8m2!3d-6.6550042!4d106.9075356!16s%2Fg%2F1pzsgqvb3?entry=ttu&g_ep=EgoyMDI2MDUyNy4wIKXMDSoASAFQAw%3D%3D"
+        allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="section__inner section__inner--narrow" style="text-align:center">
+      <span class="section-tag reveal">Hadiah</span>
+      <h2 class="section-title reveal">Amplop<em>Digital</em></h2>
+      <p class="section-desc reveal">Doa restu Anda adalah hadiah terbaik.</p>
+      <div class="gift-cards">
+        <div class="gift-card glass-card reveal-left">
+          <p class="gift-bank">Bank BNI</p>
+          <p class="gift-name">Ahmad Rifai</p>
+          <p class="gift-number">1818303136</p>
+          <button type="button" class="btn btn--outline btn--sm" data-magnetic onclick="copyText('1234567890','BNI')">Salin</button>
+        </div>
+        <div class="gift-card glass-card reveal-right">
+          <p class="gift-bank">Bank BCA</p>
+          <p class="gift-name">Vany Anggraeni</p>
+          <p class="gift-number">4270293676</p>
+          <button type="button" class="btn btn--outline btn--sm" data-magnetic onclick="copyText('0987654321','BCA')">Salin</button>
+        </div>
+      </div>
+      <div class="gift-address glass-card reveal">
+        <p class="gift-address-label">Kirim hadiah ke</p>
+        <p class="gift-address-text">Ahmad Rifai · Jl. Bintang Mas No.21<br>Bogor, Jawa Barat</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark section--glow">
+    <div class="section__inner section__inner--narrow">
+      <div style="text-align:center">
+        <span class="section-tag reveal">RSVP</span>
+        <h2 class="section-title reveal">Konfirmasi &amp; <em>Ucapan</em></h2>
+      </div>
+      <form class="rsvp-form glass-card" onsubmit="return false">
+        <div class="form-group reveal">
+          <label class="form-label" for="rsvp-name">Nama</label>
+          <input type="text" class="form-input" id="rsvp-name" placeholder="Nama lengkap" autocomplete="name">
+        </div>
+        <div class="form-group reveal">
+          <label class="form-label" for="rsvp-attend">Kehadiran</label>
+          <select class="form-select" id="rsvp-attend">
+            <option value="">Pilih</option>
+            <option value="Hadir">Insyaallah Hadir</option>
+            <option value="Tidak Hadir">Berhalangan</option>
+            <option value="Mungkin">Belum Pasti</option>
+          </select>
+        </div>
+        <div class="form-group reveal">
+          <label class="form-label" for="rsvp-wish">Ucapan</label>
+          <textarea class="form-textarea" id="rsvp-wish" placeholder="Doa dan ucapan…" rows="4"></textarea>
+        </div>
+        <button type="button" class="btn btn--gold btn--block" id="submitBtn" data-magnetic onclick="submitRSVP()">Kirim Ucapan</button>
+        <p id="submit-msg">Terima kasih — semoga doanya diterima Allah SWT.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="section__inner section__inner--narrow">
+      <div style="text-align:center">
+        <span class="section-tag reveal">Tamu</span>
+        <h2 class="section-title reveal">Doa &amp; <em>Ucapan</em></h2>
+      </div>
+      <div class="wishes-list" id="wishes-list">
+        <p class="wish-empty">Belum ada ucapan nih. Jadilah yang pertama yaa</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div id="three-footer" class="three-wrap three-wrap--footer" aria-hidden="true"></div>
+    <img src="assets/svg/garland-wave.svg" alt="" class="footer__garland">
+    <h2 class="footer-names reveal">Ahmad &amp; Vany</h2>
+    <blockquote class="footer-quote reveal">
+      "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri,
+      supaya kamu cenderung dan merasa tenteram kepadanya."
+    </blockquote>
+    <p class="footer-meta reveal">
+      <em>QS. Ar-Rum: 21</em>
+      Selasa, 9 Juni 2026 · Bogor
+      <em>Made By Ahmad Rifai</em>
+    </p>
+  </footer>
+
+</main>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button type="button" class="lightbox-close" onclick="event.stopPropagation(); closeLightbox()" aria-label="Tutup">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<button type="button" class="music-player" id="musicPlayer" onclick="toggleMusic()" aria-label="Musik">
+  <span class="music-icon paused" id="musicIcon">♪</span>
+</button>
+<audio id="bgMusic" loop preload="none">
+  <source src="assets/music/musik-nikah.mp3" type="audio/mpeg">
+</audio>
+
+<div id="toast" role="status"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="assets/js/three-scene.js"></script>
+<script src="assets/js/rsvp.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

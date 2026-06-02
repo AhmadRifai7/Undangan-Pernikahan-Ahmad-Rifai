@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" fill="none">
+  <!-- Central hanging garland with melati (jasmine) flowers -->
+
+  <!-- Main vine curve -->
+  <path d="M0 60 Q150 20 300 10 Q450 20 600 60" stroke="#C5973A" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <path d="M0 65 Q150 25 300 15 Q450 25 600 65" stroke="#C5973A" stroke-width="0.5" fill="none" opacity="0.3"/>
+
+  <!-- Left hanging tendrils -->
+  <path d="M80 55 Q70 90 75 120" stroke="#C5973A" stroke-width="0.8" fill="none" opacity="0.4"/>
+  <path d="M80 55 Q60 80 50 110" stroke="#C5973A" stroke-width="0.8" fill="none" opacity="0.3"/>
+  <path d="M160 35 Q155 70 160 100" stroke="#C5973A" stroke-width="0.8" fill="none" opacity="0.4"/>
+  <path d="M160 35 Q140 60 135 90" stroke="#C5973A" stroke-width="0.8" fill="none" opacity="0.3"/>
+
+  <!-- Right hanging tendrils (mirrored) -->
+  <path d="M520 55 Q530 90 525 120" stroke="#C5973A" stroke-width="0.8" fill="none" opacity="0.4"/>
+  <path d="M520 55 Q540 80 550 110" stroke="#C5973A" stroke-width="0.8" fill="none" opacity="0.3"/>
+  <path d="M440 35 Q445 70 440 100" stroke="#C5973A" stroke-width="0.8" fill="none" opacity="0.4"/>
+  <path d="M440 35 Q460 60 465 90" stroke="#C5973A" stroke-width="0.8" fill="none" opacity="0.3"/>
+
+  <!-- Center hanging -->
+  <path d="M300 10 Q295 50 300 90" stroke="#C5973A" stroke-width="0.8" fill="none" opacity="0.4"/>
+  <path d="M300 10 Q275 45 265 80" stroke="#C5973A" stroke-width="0.8" fill="none" opacity="0.3"/>
+  <path d="M300 10 Q325 45 335 80" stroke="#C5973A" stroke-width="0.8" fill="none" opacity="0.3"/>
+
+  <!-- Helper: melati flower macro -->
+  <!-- We'll place many small jasmine flowers along the garland -->
+
+  <!-- Flower at x=0 y=60 -->
+  <g transform="translate(15,60)" opacity="0.75">
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(120)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(240)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(300)"/>
+    <circle cx="0" cy="0" r="3" fill="#E2B96F"/>
+  </g>
+
+  <!-- Flower at x=80 y=55 -->
+  <g transform="translate(80,52)" opacity="0.8">
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(120)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(240)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(300)"/>
+    <circle cx="0" cy="0" r="3" fill="#E2B96F"/>
+  </g>
+
+  <!-- Flower at x=160 y=35 -->
+  <g transform="translate(160,32)" opacity="0.8">
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(120)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(240)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(300)"/>
+    <circle cx="0" cy="0" r="3" fill="#E2B96F"/>
+  </g>
+
+  <!-- Flower at x=230 y=18 -->
+  <g transform="translate(230,16)" opacity="0.8">
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9"/>
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9" transform="rotate(120)"/>
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9" transform="rotate(240)"/>
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9" transform="rotate(300)"/>
+    <circle cx="0" cy="0" r="4" fill="#E2B96F"/>
+  </g>
+
+  <!-- CENTER BIG FLOWER at x=300 y=10 -->
+  <g transform="translate(300,8)" opacity="0.95">
+    <ellipse cx="0" cy="-11" rx="6" ry="10" fill="#F5EFE0" opacity="0.95"/>
+    <ellipse cx="0" cy="-11" rx="6" ry="10" fill="#F5EFE0" opacity="0.95" transform="rotate(45)"/>
+    <ellipse cx="0" cy="-11" rx="6" ry="10" fill="#F5EFE0" opacity="0.95" transform="rotate(90)"/>
+    <ellipse cx="0" cy="-11" rx="6" ry="10" fill="#F5EFE0" opacity="0.95" transform="rotate(135)"/>
+    <ellipse cx="0" cy="-11" rx="6" ry="10" fill="#F5EFE0" opacity="0.95" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-11" rx="6" ry="10" fill="#F5EFE0" opacity="0.95" transform="rotate(225)"/>
+    <ellipse cx="0" cy="-11" rx="6" ry="10" fill="#F5EFE0" opacity="0.95" transform="rotate(270)"/>
+    <ellipse cx="0" cy="-11" rx="6" ry="10" fill="#F5EFE0" opacity="0.95" transform="rotate(315)"/>
+    <circle cx="0" cy="0" r="5" fill="#E2B96F"/>
+    <circle cx="0" cy="0" r="2" fill="#C5973A"/>
+  </g>
+
+  <!-- Flower at x=370 y=18 -->
+  <g transform="translate(370,16)" opacity="0.8">
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9"/>
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9" transform="rotate(120)"/>
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9" transform="rotate(240)"/>
+    <ellipse cx="0" cy="-9" rx="5" ry="8" fill="#F5EFE0" opacity="0.9" transform="rotate(300)"/>
+    <circle cx="0" cy="0" r="4" fill="#E2B96F"/>
+  </g>
+
+  <!-- Flower at x=440 y=35 -->
+  <g transform="translate(440,32)" opacity="0.8">
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(120)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(240)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(300)"/>
+    <circle cx="0" cy="0" r="3" fill="#E2B96F"/>
+  </g>
+
+  <!-- Flower at x=520 y=55 -->
+  <g transform="translate(520,52)" opacity="0.8">
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(120)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(240)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(300)"/>
+    <circle cx="0" cy="0" r="3" fill="#E2B96F"/>
+  </g>
+
+  <!-- Flower at x=585 y=60 -->
+  <g transform="translate(585,60)" opacity="0.75">
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(120)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(240)"/>
+    <ellipse cx="0" cy="-8" rx="4" ry="7" fill="#F5EFE0" opacity="0.9" transform="rotate(300)"/>
+    <circle cx="0" cy="0" r="3" fill="#E2B96F"/>
+  </g>
+
+  <!-- Drooping bud clusters -->
+  <g transform="translate(75,118)" opacity="0.5">
+    <ellipse cx="0" cy="0" rx="3" ry="5" fill="#F5EFE0"/>
+    <circle cx="0" cy="5" r="2" fill="#E2B96F" opacity="0.6"/>
+  </g>
+  <g transform="translate(157,100)" opacity="0.5">
+    <ellipse cx="0" cy="0" rx="3" ry="5" fill="#F5EFE0"/>
+    <circle cx="0" cy="5" r="2" fill="#E2B96F" opacity="0.6"/>
+  </g>
+  <g transform="translate(297,92)" opacity="0.5">
+    <ellipse cx="0" cy="0" rx="3" ry="5" fill="#F5EFE0"/>
+    <circle cx="0" cy="5" r="2" fill="#E2B96F" opacity="0.6"/>
+  </g>
+  <g transform="translate(443,100)" opacity="0.5">
+    <ellipse cx="0" cy="0" rx="3" ry="5" fill="#F5EFE0"/>
+    <circle cx="0" cy="5" r="2" fill="#E2B96F" opacity="0.6"/>
+  </g>
+  <g transform="translate(525,118)" opacity="0.5">
+    <ellipse cx="0" cy="0" rx="3" ry="5" fill="#F5EFE0"/>
+    <circle cx="0" cy="5" r="2" fill="#E2B96F" opacity="0.6"/>
+  </g>
+
+  <!-- Small leaf accents on vine -->
+  <ellipse cx="120" cy="42" rx="6" ry="3" fill="#C5973A" opacity="0.3" transform="rotate(-20 120 42)"/>
+  <ellipse cx="200" cy="25" rx="6" ry="3" fill="#C5973A" opacity="0.3" transform="rotate(-10 200 25)"/>
+  <ellipse cx="400" cy="25" rx="6" ry="3" fill="#C5973A" opacity="0.3" transform="rotate(10 400 25)"/>
+  <ellipse cx="480" cy="42" rx="6" ry="3" fill="#C5973A" opacity="0.3" transform="rotate(20 480 42)"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+  <g opacity="0.9">
+    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35"/>
+    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(45 100 88)"/>
+    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(90 100 88)"/>
+    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(135 100 88)"/>
+    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(180 100 88)"/>
+    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(225 100 88)"/>
+    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(270 100 88)"/>
+    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(315 100 88)"/>
+    <circle cx="100" cy="100" r="7" fill="currentColor" opacity="0.55"/>
+  </g>
+  <path d="M100 100 Q85 130 70 155 M100 100 Q115 130 130 155" stroke="currentColor" stroke-width="0.8" opacity="0.3"/>
+  <path d="M40 100 Q70 85 100 70 Q130 85 160 100" stroke="currentColor" stroke-width="0.6" opacity="0.25" fill="none"/>
+</svg>

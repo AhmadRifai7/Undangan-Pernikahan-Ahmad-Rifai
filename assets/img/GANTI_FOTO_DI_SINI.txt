@@ -1,0 +1,7 @@
+Taruh foto-foto di folder ini:
+- foto-pria.jpg     (foto mempelai pria, 800x1000px)
+- foto-wanita.jpg   (foto mempelai wanita, 800x1000px)
+- foto1.jpg ... foto5.jpg  (foto galeri, 1200x800px)
+- og-image.jpg      (thumbnail share sosmed, 1200x630px)
+
+Tips: kompress dulu di https://squoosh.app
