@@ -8,10 +8,10 @@
  * Format URL: https://script.google.com/macros/s/XXXX/exec
  */
 
-const SPREADSHEET_ID = 'https://docs.google.com/spreadsheets/d/1-21YmYpj9WUkY9kRUBdt9TlfKMO3h_r-MJ6ewY_8Z80/edit?gid=451570177#gid=451570177';
+const SPREADSHEET_ID = '1-21YmYpj9WUkY9kRUBdt9TlfKMO3h_r-MJ6ewY_8Z80';
 
 // Web App URL — Google Apps Script deploy
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyPEBfWqRww1vyExG426-nc7tgyRBswYxU-hYD-7DyNF-IpwWBjfPFUtLBCILkQTS8x/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbybO7L3dSv-w8SlBLF78BmRfNEHtmUwjjjR8KSdNg0luflNoDckaBdtqxHlz76GViHG/exec';
 
 const DEMO_MODE = SHEET_URL === 'GANTI_DENGAN_GOOGLE_APPS_SCRIPT_URL';
 
