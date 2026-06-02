@@ -227,11 +227,32 @@ function tryPlayMusic() {
     musicPlayer.style.display = 'flex';
     musicPlayer.classList.add('active');
   }
+// Coba autoplay dulu, tombol selalu sudah visible via CSS animation
+musicStarted = true;
+audio.volume = 0;
+audio.currentTime = 0;
 
-  musicStarted = true;
-  audio.volume = 0;
-  audio.currentTime = 0;
+const fadeIn = (targetVol = 0.5, duration = 1500) => {
+  const start = Date.now();
+  const tick = () => {
+    const p = Math.min((Date.now() - start) / duration, 1);
+    audio.volume = p * targetVol;
+    if (p < 1) requestAnimationFrame(tick);
+  };
+  tick();
+};
 
+audio.play()
+  .then(() => {
+    musicPlaying = true;
+    document.getElementById('musicIcon')?.classList.remove('paused');
+    fadeIn();
+  })
+  .catch(() => {
+    musicStarted = false;
+    document.getElementById('musicIcon')?.classList.add('paused');
+  });
+  
   // Fade in effect selama 1.5 detik
   const fadeInDuration = 1500;
   const startTime = Date.now();
@@ -243,24 +264,6 @@ function tryPlayMusic() {
     if (progress < 1) requestAnimationFrame(fadeIn);
   };
 
-  const playPromise = audio.play();
-
-  if (playPromise !== undefined) {
-    playPromise
-      .then(() => {
-        console.log('Music playing');
-        musicPlaying = true;
-        document.getElementById('musicIcon')?.classList.remove('paused');
-        fadeIn();
-      })
-      .catch(error => {
-        // Autoplay diblokir browser (umum di mobile) — tombol sudah visible, user tinggal tap
-        console.log('Autoplay blocked, tap the button to play:', error);
-        musicStarted = false;
-        document.getElementById('musicIcon')?.classList.add('paused');
-      });
-  }
-}
 
 function toggleMusic() {
   const audio = document.getElementById('bgMusic');
