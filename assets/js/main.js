@@ -220,27 +220,31 @@ let musicStarted = false;
 function tryPlayMusic() {
   const audio = document.getElementById('bgMusic');
   if (!audio || musicStarted) return;
-  
+
+  // Selalu tampilkan tombol musik dari awal (penting untuk mobile)
+  const musicPlayer = document.getElementById('musicPlayer');
+  if (musicPlayer) {
+    musicPlayer.style.display = 'flex';
+    musicPlayer.classList.add('active');
+  }
+
   musicStarted = true;
   audio.volume = 0;
   audio.currentTime = 0;
-  
+
   // Fade in effect selama 1.5 detik
   const fadeInDuration = 1500;
   const startTime = Date.now();
-  
+
   const fadeIn = () => {
     const elapsed = Date.now() - startTime;
     const progress = Math.min(elapsed / fadeInDuration, 1);
     audio.volume = progress * 0.5;
-    
-    if (progress < 1) {
-      requestAnimationFrame(fadeIn);
-    }
+    if (progress < 1) requestAnimationFrame(fadeIn);
   };
-  
+
   const playPromise = audio.play();
-  
+
   if (playPromise !== undefined) {
     playPromise
       .then(() => {
@@ -248,25 +252,12 @@ function tryPlayMusic() {
         musicPlaying = true;
         document.getElementById('musicIcon')?.classList.remove('paused');
         fadeIn();
-        
-        // Stop musik setelah 16 detik
-        setTimeout(() => {
-          if (audio && !audio.paused) {
-            audio.pause();
-            musicPlaying = false;
-            document.getElementById('musicIcon')?.classList.add('paused');
-          }
-        }, 16000);
       })
       .catch(error => {
-        console.log('Autoplay failed:', error);
+        // Autoplay diblokir browser (umum di mobile) — tombol sudah visible, user tinggal tap
+        console.log('Autoplay blocked, tap the button to play:', error);
         musicStarted = false;
-        // Tampilkan button untuk manual play
-        const musicPlayer = document.getElementById('musicPlayer');
-        if (musicPlayer) {
-          musicPlayer.style.display = 'flex';
-          musicPlayer.classList.add('active');
-        }
+        document.getElementById('musicIcon')?.classList.add('paused');
       });
   }
 }
