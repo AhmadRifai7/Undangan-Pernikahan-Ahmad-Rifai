@@ -313,7 +313,44 @@ code { font-size: 0.85em; opacity: 0.7; }
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
 }
+.hero-corner {
+  position: absolute;
+  width: clamp(60px, 10vw, 100px);
+  color: var(--gold);
+  opacity: 0.4;
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-corner{
+position:fixed;
+width:260px;
+opacity:.15;
+pointer-events:none;
+z-index:2;
+}
 
+.hero-corner--tl{
+top:0;
+left:0;
+}
+
+.hero-corner--tr{
+top:0;
+right:0;
+transform:scaleX(-1);
+}
+
+.hero-corner--bl{
+bottom:0;
+left:0;
+transform:scaleY(-1);
+}
+
+.hero-corner--br{
+bottom:0;
+right:0;
+transform:scale(-1);
+}
 /* Link gen */
 .link-gen {
   position: fixed;
