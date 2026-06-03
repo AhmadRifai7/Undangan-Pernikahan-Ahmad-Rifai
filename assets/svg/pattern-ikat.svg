@@ -1,9 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
-  <defs>
-    <pattern id="ikat" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M0 10 L10 0 L20 10 L10 20 Z" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.35"/>
-      <circle cx="10" cy="10" r="1.2" fill="currentColor" opacity="0.2"/>
-    </pattern>
-  </defs>
-  <rect width="80" height="80" fill="url(#ikat)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+  <!-- Motif ikat geometris - tile 72x72 -->
+  
+  <!-- Diamond utama -->
+  <path d="M36 8 L52 36 L36 64 L20 36Z" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+  <!-- Diamond dalam -->
+  <path d="M36 18 L46 36 L36 54 L26 36Z" stroke="currentColor" stroke-width="0.4" opacity="0.4"/>
+  <!-- Inti -->
+  <path d="M36 28 L42 36 L36 44 L30 36Z" fill="currentColor" opacity="0.3"/>
+  
+  <!-- Silang diagonal -->
+  <line x1="20" y1="36" x2="52" y2="36" stroke="currentColor" stroke-width="0.3" opacity="0.25"/>
+  <line x1="36" y1="8" x2="36" y2="64" stroke="currentColor" stroke-width="0.3" opacity="0.25"/>
+  
+  <!-- Titik sudut -->
+  <circle cx="36" cy="8" r="1.5" fill="currentColor" opacity="0.5"/>
+  <circle cx="52" cy="36" r="1.5" fill="currentColor" opacity="0.5"/>
+  <circle cx="36" cy="64" r="1.5" fill="currentColor" opacity="0.5"/>
+  <circle cx="20" cy="36" r="1.5" fill="currentColor" opacity="0.5"/>
+  
+  <!-- Titik tengah -->
+  <circle cx="36" cy="36" r="2.5" fill="currentColor" opacity="0.6"/>
+  <circle cx="36" cy="36" r="1" fill="currentColor" opacity="0.9"/>
+  
+  <!-- Aksen sudut tile -->
+  <path d="M0 0 L6 0 L0 6Z" fill="currentColor" opacity="0.15"/>
+  <path d="M72 0 L66 0 L72 6Z" fill="currentColor" opacity="0.15"/>
+  <path d="M0 72 L6 72 L0 66Z" fill="currentColor" opacity="0.15"/>
+  <path d="M72 72 L66 72 L72 66Z" fill="currentColor" opacity="0.15"/>
+  
+  <!-- Garis border tile -->
+  <line x1="0" y1="36" x2="20" y2="36" stroke="currentColor" stroke-width="0.25" opacity="0.2"/>
+  <line x1="52" y1="36" x2="72" y2="36" stroke="currentColor" stroke-width="0.25" opacity="0.2"/>
+  <line x1="36" y1="0" x2="36" y2="8" stroke="currentColor" stroke-width="0.25" opacity="0.2"/>
+  <line x1="36" y1="64" x2="36" y2="72" stroke="currentColor" stroke-width="0.25" opacity="0.2"/>
 </svg>

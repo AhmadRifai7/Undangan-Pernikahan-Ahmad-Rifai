@@ -1,15 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" aria-hidden="true">
-  <g opacity="0.9">
-    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35"/>
-    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(45 100 88)"/>
-    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(90 100 88)"/>
-    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(135 100 88)"/>
-    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(180 100 88)"/>
-    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(225 100 88)"/>
-    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(270 100 88)"/>
-    <ellipse cx="100" cy="88" rx="8" ry="14" fill="currentColor" opacity="0.35" transform="rotate(315 100 88)"/>
-    <circle cx="100" cy="100" r="7" fill="currentColor" opacity="0.55"/>
+  <g transform="translate(100,100)">
+    <!-- Kelopak luar 8 arah - isi penuh -->
+    <path d="M0-42 C8-32 10-22 8-14 C4-8 0-4 0-4 C0-4 -4-8 -8-14 C-10-22 -8-32 0-42Z" fill="currentColor" opacity="0.3"/>
+    <path d="M0 42 C-8 32 -10 22 -8 14 C-4 8 0 4 0 4 C0 4 4 8 8 14 C10 22 8 32 0 42Z" fill="currentColor" opacity="0.3"/>
+    <path d="M-42 0 C-32-8 -22-10 -14-8 C-8-4 -4 0 -4 0 C-4 0 -8 4 -14 8 C-22 10 -32 8 -42 0Z" fill="currentColor" opacity="0.3"/>
+    <path d="M42 0 C32 8 22 10 14 8 C8 4 4 0 4 0 C4 0 8-4 14-8 C22-10 32-8 42 0Z" fill="currentColor" opacity="0.3"/>
+
+    <!-- Kelopak diagonal -->
+    <path d="M-28-28 C-20-26 -14-20 -10-10 C-6-6 -4 0 -4 0 C-4 0 -6-6 -10-10 C-20-14 -26-20 -28-28Z" fill="currentColor" opacity="0.22"/>
+    <path d="M28-28 C26-20 20-14 10-10 C6-6 4 0 4 0 C4 0 6-6 10-10 C14-20 20-26 28-28Z" fill="currentColor" opacity="0.22"/>
+    <path d="M28 28 C20 26 14 20 10 10 C6 6 4 0 4 0 C4 0 6 6 10 10 C20 14 26 20 28 28Z" fill="currentColor" opacity="0.22"/>
+    <path d="M-28 28 C-26 20 -20 14 -10 10 C-6 6 -4 0 -4 0 C-4 0 -6 6 -10 10 C-14 20 -20 26 -28 28Z" fill="currentColor" opacity="0.22"/>
+
+    <!-- Ring dekoratif -->
+    <circle cx="0" cy="0" r="22" stroke="currentColor" stroke-width="0.6" opacity="0.2"/>
+    <circle cx="0" cy="0" r="16" stroke="currentColor" stroke-width="0.4" opacity="0.15"/>
+
+    <!-- Titik aksen di ring -->
+    <circle cx="0" cy="-22" r="1.5" fill="currentColor" opacity="0.35"/>
+    <circle cx="0" cy="22" r="1.5" fill="currentColor" opacity="0.35"/>
+    <circle cx="-22" cy="0" r="1.5" fill="currentColor" opacity="0.35"/>
+    <circle cx="22" cy="0" r="1.5" fill="currentColor" opacity="0.35"/>
+    <circle cx="-15" cy="-15" r="1" fill="currentColor" opacity="0.25"/>
+    <circle cx="15" cy="-15" r="1" fill="currentColor" opacity="0.25"/>
+    <circle cx="15" cy="15" r="1" fill="currentColor" opacity="0.25"/>
+    <circle cx="-15" cy="15" r="1" fill="currentColor" opacity="0.25"/>
+
+    <!-- Inti bunga -->
+    <circle cx="0" cy="0" r="8" fill="currentColor" opacity="0.45"/>
+    <circle cx="0" cy="0" r="5" fill="currentColor" opacity="0.6"/>
+    <circle cx="0" cy="0" r="2.5" fill="currentColor" opacity="0.9"/>
+
+    <!-- Bintang inti -->
+    <path d="M0-7 L1.5-1.5 L7 0 L1.5 1.5 L0 7 L-1.5 1.5 L-7 0 L-1.5-1.5Z" fill="currentColor" opacity="0.35"/>
+
+    <!-- Sulur dekoratif -->
+    <path d="M0-42 Q5-50 0-58" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+    <path d="M0 42 Q-5 50 0 58" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+    <circle cx="0" cy="-60" r="2" fill="currentColor" opacity="0.2"/>
+    <circle cx="0" cy="60" r="2" fill="currentColor" opacity="0.2"/>
   </g>
-  <path d="M100 100 Q85 130 70 155 M100 100 Q115 130 130 155" stroke="currentColor" stroke-width="0.8" opacity="0.3"/>
-  <path d="M40 100 Q70 85 100 70 Q130 85 160 100" stroke="currentColor" stroke-width="0.6" opacity="0.25" fill="none"/>
 </svg>
