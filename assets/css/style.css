@@ -430,6 +430,15 @@ code { font-size: 0.85em; opacity: 0.7; }
       transparent 70%
     );
 }
+.cover-photo-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('../img/prewed.jpeg');
+  background-size: cover;
+  background-position: center top;
+  opacity: 1;
+}
 
 /* Content */
 .cover-content {
