@@ -78,8 +78,22 @@
 
 <!-- Cover -->
 <div class="cover" id="cover">
-  <img src="assets/img/prewed.jpeg" alt="Pre-Wedding" class="cover-photo__img">
+  <div id="three-cover" class="three-wrap" aria-hidden="true"></div>
+  
+  <!-- Foto prewed sebagai background -->
+  <div class="cover-photo-bg" style="
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('assets/img/prewed.jpeg');
+    background-size: cover;
+    background-position: center top;
+    opacity: 0.45;
+  "></div>
+  
+  <!-- Fade overlay -->
   <div class="cover-photo-fade"></div>
+  
   <div class="cover-content">
     <p class="cover-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
     <p class="cover-label">Undangan Pernikahan</p>
