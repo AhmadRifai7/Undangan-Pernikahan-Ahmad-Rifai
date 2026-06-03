@@ -407,7 +407,7 @@ code { font-size: 0.85em; opacity: 0.7; }
   padding: clamp(20px, 5vw, 40px);
   max-width: clamp(280px, 90vw, 540px);
   margin: auto;
-  margin-top: clamp(280px, 50vh, 380px);
+  margin-top: clamp(240px, 40vh, 380px);
 }
 .cover-sunda { font-size: 10px; letter-spacing: 0.55em; text-transform: uppercase; color: var(--sage); margin-bottom: 12px; animation: riseIn 1s var(--ease) 0.2s both; }
 .cover-bismillah { font-family: var(--font-serif); font-size: clamp(0.95rem, 2.2vw, 1.25rem); color: var(--gold-light); margin-bottom: clamp(10px, 2.5vw, 12px); animation: riseIn 1s var(--ease) 0.35s both; }
@@ -1024,14 +1024,12 @@ main.visible { opacity: 1; pointer-events: all; }
 
 /* Mobile */
 @media (max-width: 768px) {
+  .cover-content { margin-top: clamp(180px, 35vh, 240px); }
   .couple-signature {
     white-space: normal;
     font-size: clamp(2.8rem, 16vw, 4.2rem);
   }
   .save-the-date { font-size: clamp(1.1rem, 5vw, 1.6rem); }
-  .cover-content { padding: clamp(16px, 4vw, 30px); }
-  .cover-bismillah { margin-top: clamp(-140px, -28vh, -100px); }
-  .divider { width: clamp(200px, 60vw, 280px); }
   body { cursor: auto; }
   .cursor, .cursor-follower { display: none; }
   button, a, .gallery-item, .open-btn, .music-player { cursor: pointer; }
