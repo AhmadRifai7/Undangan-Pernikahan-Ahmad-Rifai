@@ -737,6 +737,151 @@ main.visible { opacity: 1; pointer-events: all; }
 .couple-sep { padding-top: 72px; opacity: 0.45; color: var(--gold); }
 .couple-sep img { margin: 0 auto; width: 72px; }
 
+
+/* ── Our Story Glass Emboss ── */
+.story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.story-card {
+  border-radius: 20px;
+  padding: 1.5px;
+  background: linear-gradient(135deg,
+    rgba(201,162,39,0.35),
+    rgba(255,255,255,0.04),
+    rgba(201,162,39,0.12)
+  );
+  box-shadow:
+    0 4px 24px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(0,0,0,0.25);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
+}
+.story-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 16px 48px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -1px 0 rgba(0,0,0,0.35);
+}
+
+.story-card__inner {
+  border-radius: 19px;
+  padding: 20px 24px;
+  background: rgba(12, 9, 6, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.story-card__glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  top: -50px;
+  right: -50px;
+  opacity: 0.2;
+}
+.story-card__glow--gold { background: var(--gold); }
+.story-card__glow--sage { background: var(--sage); }
+.story-card__glow--dark { background: rgba(80,40,20,0.9); }
+
+.story-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 2px;
+}
+
+.story-card__svg {
+  width: 16px;
+  height: 16px;
+  color: var(--gold);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.story-card__year {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.75;
+}
+
+.story-card__title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 400;
+  color: var(--gold-light);
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.08),
+    0 -1px 0 rgba(0,0,0,0.4),
+    0 2px 6px rgba(201,162,39,0.15);
+}
+
+.story-card__text {
+  position: relative;
+  z-index: 1;
+  font-size: 13px;
+  line-height: 1.75;
+  color: rgba(232,213,163,0.55);
+}
+
+/* Shimmer top line */
+.story-card__inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,162,39,0.5), transparent);
+  z-index: 2;
+}
+
+/* Closing card */
+.story-card--closing .story-card__inner {
+  text-align: center;
+  align-items: center;
+  background: rgba(16, 11, 7, 0.8);
+}
+.story-card--closing .story-card__meta { justify-content: center; }
+.story-card--closing .story-card__glow {
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px; height: 150px;
+  opacity: 0.12;
+}
+.story-card--closing .story-card__text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.88rem, 1.6vw, 1rem);
+  color: rgba(232,213,163,0.65);
+  max-width: 420px;
+}
+/* Mobile */
+@media (max-width: 768px) {
+  .bento-card--large,
+  .bento-card--accent,
+  .bento-card--dark,
+  .bento-card--gold,
+  .bento-card--closing { grid-column: span 12; }
+}
+
 /* Countdown */
 .countdown-grid {
   display: flex;
@@ -1104,7 +1249,14 @@ main.visible { opacity: 1; pointer-events: all; }
 /* Mobile */
 @media (max-width: 768px) {
   .cover-content { margin-top: clamp(180px, 35vh, 240px); }
-  
+  .couple-inner { grid-template-columns: 1fr; }
+  .couple-sep { display: none; }
+  .event-cards, .gift-cards { grid-template-columns: 1fr; }
+  body { cursor: auto; }
+  .cursor, .cursor-follower { display: none; }
+  button, a, .open-btn, .music-player { cursor: pointer; }
+  .music-player { bottom: 16px; right: 16px; width: 44px; height: 44px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
