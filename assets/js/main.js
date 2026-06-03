@@ -238,56 +238,69 @@ function tryPlayMusic() {
   audio.volume = 0;
   audio.currentTime = 0;
 
+  // Loop tanpa jeda — deteksi hampir habis lalu reset
+  audio.addEventListener('timeupdate', () => {
+    if (audio.duration && audio.currentTime >= audio.duration - 0.2) {
+      audio.currentTime = 0;
+      audio.play();
+    }
+  });
+
   audio.play()
     .then(() => {
       musicPlaying = true;
       document.getElementById('musicIcon')?.classList.remove('paused');
-      const fadeIn = setInterval(() => {
-        if (audio.volume < 0.45) {
-          audio.volume = Math.min(0.5, audio.volume + 0.02);
-        } else {
-          audio.volume = 0.5;
-          clearInterval(fadeIn);
-        }
-      }, 80);
+      fadeInMusic(audio);
     })
     .catch(() => {
       musicStarted = false;
       document.getElementById('musicIcon')?.classList.add('paused');
     });
 }
+
+function fadeInMusic(audio) {
+  const target = 0.9;
+  const step = 0.02;
+  const interval = setInterval(() => {
+    if (audio.volume < target - step) {
+      audio.volume = Math.min(target, audio.volume + step);
+    } else {
+      audio.volume = target;
+      clearInterval(interval);
+    }
+  }, 80);
+}
+
+function fadeOutMusic(audio, onDone) {
+  const step = 0.04;
+  const interval = setInterval(() => {
+    if (audio.volume > step) {
+      audio.volume = Math.max(0, audio.volume - step);
+    } else {
+      audio.volume = 0;
+      audio.pause();
+      clearInterval(interval);
+      if (onDone) onDone();
+    }
+  }, 50);
+}
+
 function toggleMusic() {
   const audio = document.getElementById('bgMusic');
   const icon = document.getElementById('musicIcon');
   if (!audio) return;
 
   if (musicPlaying) {
-    // Fade out lalu pause
-    const fadeOut = setInterval(() => {
-      if (audio.volume > 0.05) {
-        audio.volume = Math.max(0, audio.volume - 0.05);
-      } else {
-        audio.volume = 0;
-        audio.pause();
-        musicPlaying = false;
-        icon?.classList.add('paused');
-        clearInterval(fadeOut);
-      }
-    }, 50);
+    musicPlaying = false;
+    icon?.classList.add('paused');
+    fadeOutMusic(audio);
   } else {
     audio.volume = 0;
     audio.play()
       .then(() => {
         musicPlaying = true;
         icon?.classList.remove('paused');
-        const fadeIn = setInterval(() => {
-          if (audio.volume < 0.45) {
-            audio.volume = Math.min(0.5, audio.volume + 0.05);
-          } else {
-            audio.volume = 0.5;
-            clearInterval(fadeIn);
-          }
-        }, 50);
+        fadeInMusic(audio);
       })
       .catch(err => console.log('Play failed:', err));
   }
