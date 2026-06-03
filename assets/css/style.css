@@ -81,106 +81,7 @@ code { font-size: 0.85em; opacity: 0.7; }
   pointer-events: none;
   background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 30%, rgba(10, 7, 5, 0.75) 100%);
 }
-/* Cover prewed photo - full screen */
-.cover-photo__img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  z-index: 0;
-  opacity: 0.45; /* ← turunin opacity biar teks keliatan */
-}
-/* Pastikan cover jadi positioning parent */
-.cover {
-  position: relative;
-  overflow: hidden;
-}
 
-/* Foto full screen */
-.cover-photo__img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  opacity: 0.45;
-  z-index: 0;
-}
-
-/* Fade overlay */
-.cover-photo-fade {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,1) 0%,
-    rgba(0,0,0,0.85) 30%,
-    rgba(0,0,0,0.4) 60%,
-    transparent 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Teks di atas semua */
-.cover-content {
-  position: relative;
-  z-index: 2;
-}
-
-/* Black fade from bottom - lebih kuat */
-.cover-photo-fade {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 90% 70% at 50% -20%, rgba(201, 162, 39, 0.25), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 100% 80%, rgba(107, 127, 98, 0.15), transparent),
-    linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.5) 0%,    /* ← fade dari kiri */
-      transparent 50%
-    ),
-    linear-gradient(
-      to top,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0.95) 20%,
-      rgba(0, 0, 0, 0.7) 45%,
-      rgba(0, 0, 0, 0.3) 70%,
-      transparent 100%
-    );
-  z-index: 1;
-  pointer-events: none;
-}
-.cover-content {
-  position: relative;
-  z-index: 2;
-}
-@media (max-width: 768px) {
-  .cover-photo__img {
-    object-position: center top; /* foto fokus ke bagian atas/wajah */
-    opacity: 0.75; /* MOBILE: tinggi supaya foto terlihat jelas */
-  }
-
-  .cover-photo-fade {
-    background:
-      radial-gradient(ellipse 90% 70% at 50% -20%, rgba(201, 162, 39, 0.08), transparent 55%),
-      radial-gradient(ellipse 50% 40% at 100% 80%, rgba(107, 127, 98, 0.05), transparent),
-      linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.75) 0%,
-        rgba(0, 0, 0, 0.65) 30%,
-        rgba(0, 0, 0, 0.40) 55%,
-        transparent 100%
-      );
-  }
-}
 }
 /* Ambient orbs */
 .ambient { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
@@ -405,67 +306,60 @@ code { font-size: 0.85em; opacity: 0.7; }
 }
 .cover.is-visible { display: flex; }
 
-/* Foto prewed full screen */
-.cover-photo__img {
+/* Foto background via CSS — path dari root */
+.cover-photo-bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  opacity: 1;
+  inset: 0;
   z-index: 0;
+  background-image: url('assets/img/prewed.jpeg');
+  background-size: cover;
+  background-position: center top;
 }
 
-/* Overlay gradient - gelap di bawah biar teks terbaca + gold accent */
+/* Overlay gradient mobile-first */
 .cover-photo-fade {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 90% 70% at 50% -20%, rgba(201, 162, 39, 0.25), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 100% 80%, rgba(107, 127, 98, 0.15), transparent),
-    linear-gradient(to bottom,
-      rgba(0,0,0,0.35) 90%,
-      transparent 90%
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.97) 0%,
+      rgba(0,0,0,0.85) 25%,
+      rgba(0,0,0,0.50) 55%,
+      rgba(0,0,0,0.15) 80%,
+      transparent 100%
     ),
-    linear-gradient(to top,
-      rgba(0,0,0,0.97) 30%,
-      rgba(0,0,0,0.90) 40%,
-      rgba(0,0,0,0.60) 65%,
-      transparent 90%
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.45) 0%,
+      transparent 30%
     );
 }
-.cover-photo-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: url('../img/prewed.jpeg');
-  background-size: cover;
-  background-position: center top;
-  opacity: 1;
-}
 
-/* Content */
+/* Content mobile-first: konten di bawah foto */
 .cover-content {
   position: relative;
   z-index: 3;
   text-align: center;
-  padding: clamp(20px, 5vw, 40px);
-  max-width: clamp(280px, 90vw, 540px);
-  margin: auto;
-  margin-top: clamp(240px, 40vh, 380px);
+  padding: 0 clamp(20px, 6vw, 40px) clamp(40px, 8vh, 60px);
+  max-width: clamp(300px, 92vw, 480px);
+  margin: auto 0 0;
+  width: 100%;
+  align-self: flex-end;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .cover-photo__img {
-    object-position: 30% top;
+/* Tablet & Desktop */
+@media (min-width: 769px) {
+  .cover-photo-bg {
+    background-position: center top;
   }
   .cover-content {
-    margin-top: clamp(180px, 35vh, 240px);
+    margin: auto;
+    padding: clamp(20px, 5vw, 40px);
+    align-self: auto;
+    margin-top: clamp(240px, 40vh, 360px);
   }
 }
 
@@ -1084,7 +978,6 @@ main.visible { opacity: 1; pointer-events: all; }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .cover-content { margin-top: clamp(180px, 35vh, 240px); }
   .couple-signature {
     white-space: normal;
     font-size: clamp(2.8rem, 16vw, 4.2rem);
