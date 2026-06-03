@@ -81,7 +81,6 @@ code { font-size: 0.85em; opacity: 0.7; }
   pointer-events: none;
   background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 30%, rgba(10, 7, 5, 0.75) 100%);
 }
-
 /* Cover prewed photo - full screen */
 .cover-photo__img {
   position: absolute;
@@ -89,23 +88,51 @@ code { font-size: 0.85em; opacity: 0.7; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   z-index: 0;
+  opacity: 0.45; /* ← turunin opacity biar teks keliatan */
 }
 
-/* Black fade from bottom */
+/* Black fade from bottom - lebih kuat */
 .cover-photo-fade {
   position: absolute;
   inset: 0;
   background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.5) 0%,    /* ← fade dari kiri */
+    transparent 50%
+  ),
+  linear-gradient(
     to top,
     rgba(0, 0, 0, 1) 0%,
     rgba(0, 0, 0, 0.95) 20%,
-    rgba(0, 0, 0, 0.6) 45%,
-    transparent 75%
+    rgba(0, 0, 0, 0.7) 45%,
+    rgba(0, 0, 0, 0.3) 70%,
+    transparent 100%
   );
   z-index: 1;
   pointer-events: none;
+}
+.cover-content {
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 768px) {
+  .cover-photo__img {
+    object-position: center top; /* foto fokus ke bagian atas/wajah */
+    opacity: 0.4;
+  }
+
+  .cover-photo-fade {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.95) 25%,
+      rgba(0, 0, 0, 0.75) 50%,
+      rgba(0, 0, 0, 0.3) 75%,
+      transparent 100%
+    );
+  }
 }
 /* Ambient orbs */
 .ambient { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
