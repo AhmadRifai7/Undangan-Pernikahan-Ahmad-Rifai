@@ -92,6 +92,48 @@ code { font-size: 0.85em; opacity: 0.7; }
   z-index: 0;
   opacity: 0.45; /* ← turunin opacity biar teks keliatan */
 }
+/* Pastikan cover jadi positioning parent */
+.cover {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Foto full screen */
+.cover-photo__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0.45;
+  z-index: 0;
+}
+
+/* Fade overlay */
+.cover-photo-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,0.85) 30%,
+    rgba(0,0,0,0.4) 60%,
+    transparent 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Teks di atas semua */
+.cover-content {
+  position: relative;
+  z-index: 2;
+}
 
 /* Black fade from bottom - lebih kuat */
 .cover-photo-fade {
