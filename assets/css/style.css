@@ -74,7 +74,6 @@ code { font-size: 0.85em; opacity: 0.7; }
 }
 .three-wrap--footer { opacity: 0.5; height: 280px; top: auto; bottom: 0; }
 
-.cover-vignette,
 .hero-vignette {
   position: absolute;
   inset: 0;
@@ -82,29 +81,31 @@ code { font-size: 0.85em; opacity: 0.7; }
   pointer-events: none;
   background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 30%, rgba(10, 7, 5, 0.75) 100%);
 }
-/* Cover photo background */
-.cover-photo {
+
+/* Cover prewed photo - full screen */
+.cover-photo__img {
   position: absolute;
   inset: 0;
-  background-image: url('../img/prewed.jpg');
-  background-size: cover;
-  background-position: center top;
-  opacity: 0.35;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   z-index: 0;
 }
 
-/* Fade hitam dari bawah setengah ke atas */
+/* Black fade from bottom */
 .cover-photo-fade {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.85) 25%,
-    rgba(0, 0, 0, 0.4) 50%,
-    transparent 100%
+    rgba(0, 0, 0, 0.95) 20%,
+    rgba(0, 0, 0, 0.6) 45%,
+    transparent 75%
   );
   z-index: 1;
+  pointer-events: none;
 }
 /* Ambient orbs */
 .ambient { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
@@ -225,7 +226,7 @@ code { font-size: 0.85em; opacity: 0.7; }
   background: transparent;
 }
 .btn--outline:hover { background: rgba(201, 162, 39, 0.1); }
-.btn--lg { padding: 18px 48px; }
+.btn--lg { padding: clamp(14px, 3vw, 18px) clamp(28px, 6vw, 48px); font-size: clamp(10px, 2vw, 11px); }
 .btn--sm { padding: 10px 20px; font-size: 10px; }
 .btn--block { width: 100%; }
 
@@ -328,49 +329,24 @@ code { font-size: 0.85em; opacity: 0.7; }
   overflow: hidden;
 }
 .cover.is-visible { display: flex; }
-.cover__frame {
-  position: absolute;
-  inset: clamp(14px, 3vw, 28px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  z-index: 2;
-  pointer-events: none;
-}
-.cover__garland {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(700px, 100%);
-  color: var(--gold);
-  opacity: 0.4;
-  z-index: 2;
-  pointer-events: none;
-}
-.cover__kembang {
-  position: absolute;
-  width: clamp(90px, 16vw, 140px);
-  color: var(--gold);
-  opacity: 0.3;
-  z-index: 2;
-  pointer-events: none;
-}
-.cover__kembang--tl { top: 10%; left: 5%; }
-.cover__kembang--br { bottom: 10%; right: 5%; transform: scale(-1, -1); }
+
+/* Cover content - centered on photo with fade */
 .cover-content {
   position: relative;
   z-index: 3;
   text-align: center;
-  padding: 24px;
-  max-width: 540px;
+  padding: clamp(20px, 5vw, 40px);
+  max-width: clamp(280px, 90vw, 540px);
+  margin: auto;
+  margin-top: clamp(280px, 50vh, 380px);
 }
 .cover-sunda { font-size: 10px; letter-spacing: 0.55em; text-transform: uppercase; color: var(--sage); margin-bottom: 12px; animation: riseIn 1s var(--ease) 0.2s both; }
-.cover-bismillah { font-family: var(--font-serif); font-size: clamp(1rem, 2.5vw, 1.35rem); color: var(--gold-light); margin-bottom: 12px; animation: riseIn 1s var(--ease) 0.35s both; }
-.cover-label { font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase; color: rgba(232, 213, 163, 0.5); animation: riseIn 1s var(--ease) 0.45s both; }
-.divider { display: block; width: min(300px, 72vw); margin: 14px auto; color: var(--gold); opacity: 0.65; }
+.cover-bismillah { font-family: var(--font-serif); font-size: clamp(0.95rem, 2.2vw, 1.25rem); color: var(--gold-light); margin-bottom: clamp(10px, 2.5vw, 12px); animation: riseIn 1s var(--ease) 0.35s both; }
+.cover-label { font-size: clamp(9px, 2vw, 10px); letter-spacing: 0.5em; text-transform: uppercase; color: rgba(232, 213, 163, 0.6); animation: riseIn 1s var(--ease) 0.45s both; }
+.divider { display: block; width: clamp(240px, 65vw, 300px); margin: clamp(6px, 2vw, 10px) auto; color: var(--gold); opacity: 0.65; }
 /* Nama pasangan — script emas (seperti referensi) */
 .couple-signature-block {
-  margin: 8px 0 4px;
+  margin: clamp(6px, 1.5vw, 8px) 0 clamp(2px, 1vw, 4px);
   animation: riseIn 1.1s var(--ease) 0.55s both;
 }
 .couple-signature-block--hero {
@@ -378,12 +354,12 @@ code { font-size: 0.85em; opacity: 0.7; }
 }
 .couple-signature {
   font-family: var(--font-signature);
-  font-size: clamp(3.75rem, 14vw, 7rem);
+  font-size: clamp(2.8rem, 11vw, 5.5rem);
   font-weight: 400;
   line-height: 1.08;
   color: var(--gold-script);
   letter-spacing: 0.02em;
-  text-shadow: 0 4px 32px rgba(212, 175, 55, 0.35);
+  text-shadow: 0 2px 20px rgba(212, 175, 55, 0.3);
   white-space: nowrap;
 }
 .couple-signature .sig-name {
@@ -397,7 +373,7 @@ code { font-size: 0.85em; opacity: 0.7; }
 }
 .save-the-date {
   font-family: var(--font-signature);
-  font-size: clamp(1.65rem, 5vw, 2.5rem);
+  font-size: clamp(1.2rem, 4vw, 2rem);
   font-weight: 400;
   color: var(--gold-script);
   text-transform: lowercase;
@@ -405,8 +381,8 @@ code { font-size: 0.85em; opacity: 0.7; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(10px, 3vw, 18px);
-  margin-top: 4px;
+  gap: clamp(8px, 2.5vw, 16px);
+  margin-top: clamp(2px, 1vw, 4px);
   opacity: 0.92;
   animation: riseIn 1s var(--ease) 0.75s both;
 }
@@ -417,9 +393,9 @@ code { font-size: 0.85em; opacity: 0.7; }
   background: linear-gradient(90deg, transparent, rgba(168, 130, 210, 0.55), transparent);
   flex-shrink: 0;
 }
-.cover-date { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(232, 213, 163, 0.45); margin-top: 20px; animation: riseIn 0.9s var(--ease) 1s both; }
-.cover-kepada { font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--muted); margin-top: 24px; animation: riseIn 0.9s var(--ease) 1.15s both; }
-.cover-tamu { font-family: var(--font-serif); font-size: clamp(1.25rem, 3vw, 1.85rem); font-weight: 500; color: var(--gold-light); margin: 8px 0 28px; animation: riseIn 0.9s var(--ease) 1.3s both; }
+.cover-date { font-size: clamp(9px, 1.8vw, 10px); letter-spacing: 0.35em; text-transform: uppercase; color: rgba(232, 213, 163, 0.5); margin-top: clamp(16px, 3vw, 20px); animation: riseIn 0.9s var(--ease) 1s both; }
+.cover-kepada { font-family: var(--font-serif); font-style: italic; font-size: clamp(12px, 2.5vw, 14px); color: var(--muted); margin-top: clamp(18px, 3vw, 24px); animation: riseIn 0.9s var(--ease) 1.15s both; }
+.cover-tamu { font-family: var(--font-serif); font-size: clamp(1.1rem, 2.8vw, 1.6rem); font-weight: 500; color: var(--gold-light); margin: clamp(6px, 1.5vw, 8px) 0 clamp(18px, 4vw, 28px); animation: riseIn 0.9s var(--ease) 1.3s both; }
 .open-btn { animation: riseIn 0.9s var(--ease) 1.45s both; }
 @keyframes riseIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -981,9 +957,12 @@ main.visible { opacity: 1; pointer-events: all; }
 @media (max-width: 768px) {
   .couple-signature {
     white-space: normal;
-    font-size: clamp(3.2rem, 18vw, 4.75rem);
+    font-size: clamp(2.8rem, 16vw, 4.2rem);
   }
-  .save-the-date { font-size: clamp(1.35rem, 6vw, 1.85rem); }
+  .save-the-date { font-size: clamp(1.1rem, 5vw, 1.6rem); }
+  .cover-content { padding: clamp(16px, 4vw, 30px); }
+  .cover-bismillah { margin-top: clamp(-140px, -28vh, -100px); }
+  .divider { width: clamp(200px, 60vw, 280px); }
   body { cursor: auto; }
   .cursor, .cursor-follower { display: none; }
   button, a, .gallery-item, .open-btn, .music-player { cursor: pointer; }
