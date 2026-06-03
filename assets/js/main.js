@@ -223,6 +223,7 @@ async function openInvitation() {
 /* ── Music ── */
 let musicPlaying = false;
 let musicStarted = false;
+let loopInterval = null;
 
 function tryPlayMusic() {
   const audio = document.getElementById('bgMusic');
@@ -237,14 +238,14 @@ function tryPlayMusic() {
   musicStarted = true;
   audio.volume = 0;
   audio.currentTime = 0;
+  audio.loop = false; // kita handle manual
 
-  // Loop tanpa jeda — deteksi hampir habis lalu reset
-  audio.addEventListener('timeupdate', () => {
-    if (audio.duration && audio.currentTime >= audio.duration - 0.2) {
+  // Loop seamless — cek setiap 100ms, jump 0.3 detik sebelum habis
+  loopInterval = setInterval(() => {
+    if (audio.duration && audio.currentTime >= audio.duration - 0.3) {
       audio.currentTime = 0;
-      audio.play();
     }
-  });
+  }, 100);
 
   audio.play()
     .then(() => {
@@ -260,10 +261,9 @@ function tryPlayMusic() {
 
 function fadeInMusic(audio) {
   const target = 0.9;
-  const step = 0.02;
   const interval = setInterval(() => {
-    if (audio.volume < target - step) {
-      audio.volume = Math.min(target, audio.volume + step);
+    if (audio.volume < target - 0.02) {
+      audio.volume = Math.min(target, audio.volume + 0.02);
     } else {
       audio.volume = target;
       clearInterval(interval);
@@ -272,10 +272,9 @@ function fadeInMusic(audio) {
 }
 
 function fadeOutMusic(audio, onDone) {
-  const step = 0.04;
   const interval = setInterval(() => {
-    if (audio.volume > step) {
-      audio.volume = Math.max(0, audio.volume - step);
+    if (audio.volume > 0.04) {
+      audio.volume = Math.max(0, audio.volume - 0.04);
     } else {
       audio.volume = 0;
       audio.pause();
