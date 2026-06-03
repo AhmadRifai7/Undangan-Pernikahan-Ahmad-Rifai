@@ -392,19 +392,6 @@ code { font-size: 0.85em; opacity: 0.7; }
   cursor: pointer;
 }
 
-/* ---- COVER ---- */
-.cover {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  background: var(--ink);
-  overflow: hidden;
-}
-.cover.is-visible { display: flex; }
-
 /* Foto prewed full screen */
 .cover-photo__img {
   position: absolute;
