@@ -386,7 +386,7 @@ code { font-size: 0.85em; opacity: 0.7; }
   cursor: pointer;
 }
 
-/* Cover */
+/* ---- COVER ---- */
 .cover {
   position: fixed;
   inset: 0;
@@ -398,41 +398,40 @@ code { font-size: 0.85em; opacity: 0.7; }
   overflow: hidden;
 }
 .cover.is-visible { display: flex; }
-@media (max-width: 768px) {
-  .cover-photo__img {
-    position: fixed; /* ← ganti absolute jadi fixed */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 30% top;
-    opacity: 0.4;
-    z-index: 0;
-  }
 
-  .cover-photo-fade {
+/* Foto prewed full screen */
+.cover-photo__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 1;
+  z-index: 0;
+}
+
+/* Overlay gradient - gelap di bawah biar teks terbaca */
+.cover-photo-fade {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: 
+  background:
     linear-gradient(to bottom,
-      rgba(0,0,0,0.3) 0%,
-      transparent 80%
+      rgba(0,0,0,0.35) 0%,
+      transparent 35%
     ),
     linear-gradient(to top,
-      rgba(0,0,0,1) 0%,
-      rgba(0,0,0,0.95) 15%,
-      rgba(0,0,0,0.7) 40%,
-      transparent 65%
+      rgba(0,0,0,0.97) 0%,
+      rgba(0,0,0,0.90) 20%,
+      rgba(0,0,0,0.60) 45%,
+      transparent 70%
     );
 }
-.cover-content {
-    margin-top: clamp(180px, 35vh, 240px);
-  }
-}
-/* Cover content - centered on photo with fade */
+
+/* Content */
 .cover-content {
   position: relative;
   z-index: 3;
@@ -442,6 +441,17 @@ code { font-size: 0.85em; opacity: 0.7; }
   margin: auto;
   margin-top: clamp(240px, 40vh, 380px);
 }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .cover-photo__img {
+    object-position: 30% top;
+  }
+  .cover-content {
+    margin-top: clamp(180px, 35vh, 240px);
+  }
+}
+
 .cover-sunda { font-size: 10px; letter-spacing: 0.55em; text-transform: uppercase; color: var(--sage); margin-bottom: 12px; animation: riseIn 1s var(--ease) 0.2s both; }
 .cover-bismillah { font-family: var(--font-serif); font-size: clamp(0.95rem, 2.2vw, 1.25rem); color: var(--gold-light); margin-bottom: clamp(10px, 2.5vw, 12px); animation: riseIn 1s var(--ease) 0.35s both; }
 .cover-label { font-size: clamp(9px, 2vw, 10px); letter-spacing: 0.5em; text-transform: uppercase; color: rgba(232, 213, 163, 0.6); animation: riseIn 1s var(--ease) 0.45s both; }
