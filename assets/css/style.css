@@ -1014,7 +1014,8 @@ main.visible { opacity: 1; pointer-events: all; }
   box-shadow: 0 8px 28px rgba(201, 162, 39, 0.35);
   transition: transform 0.4s var(--ease), opacity 0.6s ease;
   opacity: 0;                    /* ← tambah ini */
-  animation: fadeInMusic 1s ease 0.5s forwards;  /* ← tambah ini */
+  animation: fadeInMusic 1s ease 0.5s forwards;
+  opacity: 1 !important;
 }
 @keyframes fadeInMusic {
   to { opacity: 1; }

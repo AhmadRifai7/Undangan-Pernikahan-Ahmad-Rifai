@@ -71,7 +71,7 @@ window.addEventListener('load', () => {
     loadWishes();
     updateCountdown();
     if (!prefersReducedMotion) initAmbientMotion();
-  }, 2400);
+  }, 1400);
 });
 
 /* ── Link generator (hanya mode admin) ── */
@@ -221,72 +221,68 @@ function tryPlayMusic() {
   const audio = document.getElementById('bgMusic');
   if (!audio || musicStarted) return;
 
-  // Selalu tampilkan tombol musik dari awal (penting untuk mobile)
   const musicPlayer = document.getElementById('musicPlayer');
   if (musicPlayer) {
     musicPlayer.style.display = 'flex';
     musicPlayer.classList.add('active');
   }
-// Coba autoplay dulu, tombol selalu sudah visible via CSS animation
-musicStarted = true;
-audio.volume = 0;
-audio.currentTime = 0;
 
-const fadeIn = (targetVol = 0.5, duration = 1500) => {
-  const start = Date.now();
-  const tick = () => {
-    const p = Math.min((Date.now() - start) / duration, 1);
-    audio.volume = p * targetVol;
-    if (p < 1) requestAnimationFrame(tick);
-  };
-  tick();
-};
+  musicStarted = true;
+  audio.volume = 0;
+  audio.currentTime = 0;
 
-audio.play()
-  .then(() => {
-    musicPlaying = true;
-    document.getElementById('musicIcon')?.classList.remove('paused');
-    fadeIn();
-  })
-  .catch(() => {
-    musicStarted = false;
-    document.getElementById('musicIcon')?.classList.add('paused');
-  });
+  audio.play()
+    .then(() => {
+      musicPlaying = true;
+      document.getElementById('musicIcon')?.classList.remove('paused');
+      const fadeIn = setInterval(() => {
+        if (audio.volume < 0.45) {
+          audio.volume = Math.min(0.5, audio.volume + 0.02);
+        } else {
+          audio.volume = 0.5;
+          clearInterval(fadeIn);
+        }
+      }, 80);
+    })
+    .catch(() => {
+      musicStarted = false;
+      document.getElementById('musicIcon')?.classList.add('paused');
+    });
 }
-
-
 function toggleMusic() {
   const audio = document.getElementById('bgMusic');
   const icon = document.getElementById('musicIcon');
   if (!audio) return;
-  
+
   if (musicPlaying) {
-    audio.pause();
-    icon?.classList.add('paused');
-    musicPlaying = false;
-  } else {
-    // Fade in effect untuk manual play juga
-    audio.volume = 0;
-    const fadeInDuration = 1500;
-    const startTime = Date.now();
-    
-    const fadeIn = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / fadeInDuration, 1);
-      audio.volume = progress * 0.5;
-      
-      if (progress < 1) {
-        requestAnimationFrame(fadeIn);
+    // Fade out lalu pause
+    const fadeOut = setInterval(() => {
+      if (audio.volume > 0.05) {
+        audio.volume = Math.max(0, audio.volume - 0.05);
+      } else {
+        audio.volume = 0;
+        audio.pause();
+        musicPlaying = false;
+        icon?.classList.add('paused');
+        clearInterval(fadeOut);
       }
-    };
-    
+    }, 50);
+  } else {
+    audio.volume = 0;
     audio.play()
       .then(() => {
-        icon?.classList.remove('paused');
         musicPlaying = true;
-        fadeIn();
+        icon?.classList.remove('paused');
+        const fadeIn = setInterval(() => {
+          if (audio.volume < 0.45) {
+            audio.volume = Math.min(0.5, audio.volume + 0.05);
+          } else {
+            audio.volume = 0.5;
+            clearInterval(fadeIn);
+          }
+        }, 50);
       })
-      .catch(error => console.log('Manual play failed:', error));
+      .catch(err => console.log('Play failed:', err));
   }
 }
 
