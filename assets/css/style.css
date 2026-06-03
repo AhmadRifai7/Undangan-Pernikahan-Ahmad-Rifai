@@ -480,7 +480,14 @@ code { font-size: 0.85em; opacity: 0.7; }
   color: var(--gold-script);
   line-height: 1.1;
   text-shadow: 0 2px 24px rgba(212,175,55,0.35);
-  animation: riseIn 1.1s var(--ease) 0.55s both;
+}
+.couple-signature-block--hero .couple-signature {
+  animation: fadeInUp 2s ease 1s both !important;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .sig-amp { margin: 0 0.05em; }
@@ -639,8 +646,8 @@ main.visible { opacity: 1; pointer-events: all; }
   color: rgba(232, 213, 163, 0.35);
   margin-bottom: 12px;
 }
-.hero-bismillah { font-family: var(--font-serif); font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: var(--gold-light); margin-bottom: 16px; }
-.hero-label { font-family: var(--font-serif); font-size: clamp(0.8rem, 1.5vw, 0.95rem); letter-spacing: 0.22em; text-transform: uppercase; color: rgba(250, 246, 238, 0.45); margin-bottom: 8px; }
+.hero-bismillah { font-family: var(--font-serif); font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: var(--gold-light); margin-bottom: 12px; opacity: 0; animation: riseIn 1s var(--ease) 0.4s forwards; }
+.hero-label { font-size: clamp(11px, 1.5vw, 13px); letter-spacing: 0.2em; color: rgba(250,246,238,0.4); margin-bottom: 20px; opacity: 0; animation: riseIn 1s var(--ease) 0.6s forwards; }
 .hero-scroll {
   position: absolute;
   bottom: 32px;
@@ -664,7 +671,63 @@ main.visible { opacity: 1; pointer-events: all; }
   0%, 100% { transform: scaleY(0.35); opacity: 0.4; }
   50% { transform: scaleY(1); opacity: 1; }
 }
-
+.hero-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw; height: 70vw;
+  max-width: 500px; max-height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,162,39,0.12) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-tag {
+  font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+  opacity: 0; animation: riseIn 1s var(--ease) 0.2s forwards;
+}
+.hero-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; margin: 16px 0;
+  opacity: 0; animation: riseIn 1s var(--ease) 0.7s forwards;
+}
+.hero-divider span {
+  display: block; width: clamp(40px, 10vw, 80px); height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,162,39,0.6), transparent);
+}
+.hero-divider img { color: var(--gold); opacity: 0.6; }
+.hero-names {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(12px, 3vw, 24px); margin: 8px 0;
+  opacity: 0; animation: riseIn 1.2s var(--ease) 0.9s forwards;
+}
+.hero-name {
+  font-family: var(--font-signature);
+  font-size: clamp(3.5rem, 12vw, 7rem);
+  color: var(--gold-script); line-height: 1;
+  text-shadow: 0 4px 32px rgba(212,175,55,0.4);
+}
+.hero-amp {
+  font-family: var(--font-signature);
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: rgba(212,175,55,0.7); align-self: center;
+}
+.hero-date-badge {
+  display: inline-block; font-size: 10px; letter-spacing: 0.45em;
+  text-transform: uppercase; color: var(--ink);
+  background: var(--grad-gold); padding: 10px 24px; border-radius: 100px;
+  margin: 16px 0; opacity: 0; animation: riseIn 1s var(--ease) 1.1s forwards;
+}
+.hero-verse {
+  margin-top: 28px; font-family: var(--font-serif); font-style: italic;
+  font-size: clamp(12px, 1.8vw, 14px); color: rgba(232,213,163,0.35);
+  line-height: 1.8; opacity: 0; animation: riseIn 1s var(--ease) 1.3s forwards;
+}
+.hero-verse em {
+  display: block; font-size: 10px; letter-spacing: 0.3em;
+  font-style: normal; margin-top: 6px; color: rgba(201,162,39,0.4);
+}
 /* Quote */
 .quote-sunda {
   text-align: center;

@@ -209,6 +209,13 @@ async function openInvitation() {
       initMagnetic();
       initCoupleTilt();
       tryPlayMusic();
+      gsap.from('.couple-signature-block--hero .couple-signature', {
+  opacity: 0,
+  y: 30,
+  duration: 1.5,
+  ease: 'power3.out',
+  delay: 1
+});
     },
   });
 }
@@ -406,17 +413,13 @@ function initAnimations() {
   reveal('.reveal-right', { opacity: 0, x: 48 }, { opacity: 1, x: 0, duration: 1.1, ease: 'power3.out' });
   reveal('.reveal-scale', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.9, ease: 'power3.out' });
 
-  /* Hero text — cinematic */
   const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  heroTl
-    .from('.hero-eyebrow', { opacity: 0, letterSpacing: '0.8em', duration: 1.2 })
-    .from('.hero-sunda', { opacity: 0, y: 16, duration: 0.8 }, '-=0.6')
-    .from('.hero-bismillah', { opacity: 0, y: 24, duration: 1 }, '-=0.5')
-    .from('.hero-label', { opacity: 0, y: 20, duration: 0.9 }, '-=0.6')
-    .from('.couple-signature-block--hero .couple-signature', { opacity: 0, y: 50, scale: 0.96, duration: 1.2 }, '-=0.4')
-    .from('.couple-signature-block--hero .save-the-date', { opacity: 0, y: 20, duration: 0.9 }, '-=0.7')
-    .from('.hero-scroll', { opacity: 0, y: 12, duration: 0.8 }, '-=0.3');
-
+heroTl
+  .from('.hero-eyebrow', { opacity: 0, letterSpacing: '0.8em', duration: 1.2 })
+  .from('.hero-sunda', { opacity: 0, y: 16, duration: 0.8 }, '-=0.6')
+  .from('.hero-bismillah', { opacity: 0, y: 24, duration: 1 }, '-=0.5')
+  .from('.hero-label', { opacity: 0, y: 20, duration: 0.9 }, '-=0.6')
+  .from('.hero-scroll', { opacity: 0, y: 12, duration: 0.8 }, '-=0.3');
   /* Parallax decor */
   ['#heroGarland', '#heroKembangL', '#heroKembangR'].forEach((sel, i) => {
     const node = document.querySelector(sel);
